@@ -15,13 +15,6 @@
       "genre": "Fiction"
     },
     {
-      "id": 3,
-      "title": "1984",
-      "author": "George Orwell",
-      "year": 1949,
-      "genre": "Science Fiction"
-    },
-    {
       "id": 4,
       "title": "Pride and Prejudice",
       "author": "Jane Austen",
