@@ -131,12 +131,9 @@ npm start
 (Still trying)
 DEPLOYMENT OPTIONS
 Frontend Deployment:
-Netlify
 Vercel
-Github Pages
 
 Backend Deployment:
 Render
-Railway
 
 
