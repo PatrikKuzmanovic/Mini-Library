@@ -1,5 +1,7 @@
-const API_BASE_URL = 'http://localhost:3000/api';
-const BASE_URL = 'https://mini-library-backend.onrender.com';
+const API_BASE_URL = 'https://mini-library-ugzv.onrender.com/api';
+//const API_BASE_URL = 'http://localhost:3000/api';
+
+
 
 function escapeHtml(text) {
     const map = {
@@ -11,21 +13,6 @@ function escapeHtml(text) {
     };
     return text.toString().replace(/[&<>"']/g, m => map[m]);
 }
-
-document.addEventListener('DOMContentLoaded', () => {
-  fetch('https://mini-library-backend.onrender.com/books') 
-    .then(response => response.json())
-    .then(data => {
-      const booksList = document.getElementById('books-list');
-      booksList.innerHTML = '';
-
-      data.forEach(book => {
-        const li = document.createElement('li');
-        li.textContent = `${book.title} by ${book.author}`;
-        booksList.appendChild(li);
-      });
-    });
-});
 
 document.addEventListener('DOMContentLoaded', () => {
     console.log('DOM loaded, initializing app...');

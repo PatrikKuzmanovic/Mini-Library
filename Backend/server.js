@@ -4,14 +4,42 @@ const fs = require('fs');
 const path = require('path');
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
+//const PORT = 3000;
 
 app.use(cors());
 app.use(express.json());
 
-app.use(express.static(path.join(__dirname, '..', 'Frontend')));
+//app.use(express.static(path.join(__dirname, '..', 'Frontend')));
 
 const booksFilePath = path.join(__dirname, 'data', 'books.json');
+
+function initializeBooks() {
+    if (!fs.existsSync(booksFilePath)) {
+        const dataDir = path.join(__dirname, 'data');
+        if (!fs.existsSync(dataDir)) {
+            fs.mkdirSync(dataDir, { recursive: true });
+        }
+
+        const initialData = {
+            books: [
+                { id: 1, title: "The Great Gatsby", author: "F. Scott Fitzgerald", year: 1925, genre: "Fiction" },
+                { id: 2, title: "To Kill a Mockingbird", author: "Harper Lee", year: 1960, genre: "Fiction" },
+                { id: 3, title: "1984", author: "George Orwell", year: 1949, genre: "Science Fiction" },
+                { id: 4, title: "Pride and Prejudice", author: "Jane Austen", year: 1813, genre: "Romance" },
+                { id: 5, title: "The Catcher in the Rye", author: "J.D. Salinger", year: 1951, genre: "Fiction" },
+                { id: 6, title: "The Hobbit", author: "J.R.R. Tolkien", year: 1937, genre: "Fantasy" },
+                { id: 7, title: "Harry Potter and the Philosopher's Stone", author: "J.K. Rowling", year: 1997, genre: "Fantasy" },
+                { id: 8, title: "The Lord of the Rings", author: "J.R.R. Tolkien", year: 1954, genre: "Fantasy" }
+            ]
+        };
+
+        fs.writeFileSync(booksFilePath, JSON.stringify(initialData, null, 2));
+        console.log('Initialized books.json with defalt data');
+    }
+}
+
+initializeBooks();
 
 function readBooks() {
     try {
